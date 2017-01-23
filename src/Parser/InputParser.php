@@ -6,6 +6,6 @@ class InputParser
 {
     public function parse($input)
     {
-        return null;
+        return strtoupper($input);
     }
 }
