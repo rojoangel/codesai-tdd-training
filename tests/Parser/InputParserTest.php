@@ -17,4 +17,11 @@ class InputParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(["COCINERO", "FONTANERO"], $inputParser->parse("COCINERO FONTANERO"));
         $this->assertEquals(["COCINERO", "FONTANERO"], $inputParser->parse("COCINERO    FONTANERO"));
     }
+
+    public function test_removes_accents()
+    {
+        $inputParser = new InputParser();
+        // if using uppercase input we may oversee that strtoupper does not capitalize vowels wit accents
+        $this->assertEquals(["AEIOUAEIOU"], $inputParser->parse("áéíóúÁÉÍÓÚ"));
+    }
 }
