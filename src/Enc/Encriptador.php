@@ -88,8 +88,16 @@ class Encriptador
         $words = $this->getWords($sentence);
         for ($i = 0; $i < count($words); $i++)
         {
-            echo "<" . $words[$i] . ">";
+            $this->printResult($words, $i);
         }
     }
 
+    /**
+     * @param $words
+     * @param $i
+     */
+    protected function printResult($words, $i)
+    {
+        echo "<" . $words[$i] . ">";
+    }
 }

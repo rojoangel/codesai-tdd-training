@@ -113,4 +113,11 @@ class EncriptadorTest extends \PHPUnit_Framework_TestCase
         $encriptador = new Encriptador();
         $encriptador->cryptWordPartially("A B", "A");
     }
+
+    public function testPrintWords()
+    {
+        $encriptador = new FakeEncriptador();
+        $encriptador->printWords("Hello World I am Here");
+        $this->assertEquals("<Hello><World><I><am><Here>", $encriptador->getResult());
+    }
 }
