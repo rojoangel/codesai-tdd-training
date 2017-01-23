@@ -8,26 +8,32 @@ class Encriptador
     {
         $this->validateWord($word);
 
-        return $this->crypt($word);
+        $encryptLogic = function ($newWord, $charValue) {
+            return $newWord . chr($charValue + 2);
+        };
+
+        return $this->crypt($encryptLogic, $word);
     }
 
     function cryptWordToNumbers($word)
     {
         $this->validateWord($word);
 
-        $wordArray = $this->splitToChars($word);
-        $newWord = "";
-        for ($i = 1; $i < count($wordArray) -1; $i++)
-        {
-            $charValue = ord($wordArray[$i]);
-            $newWord = $newWord . ($charValue + 2);
-        }
-        return $newWord;
+        $encryptLogic = function ($newWord, $charValue) {
+            return $newWord . ($charValue + 2);
+        };
+
+        return $this->crypt($encryptLogic, $word);
+
     }
 
     function cryptSentence($word)
     {
-        return $this->crypt($word);
+        $encryptLogic = function ($newWord, $charValue) {
+            return $newWord . chr($charValue + 2);
+        };
+
+        return $this->crypt($encryptLogic, $word);
     }
 
     function cryptWordPartially($word, $charsToReplace)
@@ -103,13 +109,13 @@ class Encriptador
      * @param $word
      * @return string
      */
-    private function crypt($word)
+    private function crypt($encryptLogic, $word)
     {
         $wordArray = $this->splitToChars($word);
         $newWord = "";
         for ($i = 1; $i < count($wordArray) - 1; $i++) {
             $charValue = ord($wordArray[$i]);
-            $newWord = $newWord . chr($charValue + 2);
+            $newWord = $encryptLogic($newWord, $charValue);
         }
         return $newWord;
     }
