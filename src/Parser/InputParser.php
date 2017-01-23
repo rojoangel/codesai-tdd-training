@@ -6,9 +6,12 @@ class InputParser
 {
     public function parse($input)
     {
-        $upperCaseInput = $this->uppercase($input);
-        $accentFreeInput = $this->removeAccents($upperCaseInput);
-        return $this->tokenize($accentFreeInput);
+        $parsedInput = [];
+        $tokens = $this->tokenize($input);
+        foreach ($tokens as $token) {
+            $parsedInput[] = $this->removeAccents($this->uppercase($token));
+        }
+        return $parsedInput;
     }
 
     private function removeAccents($input)
