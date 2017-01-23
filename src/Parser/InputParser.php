@@ -6,9 +6,9 @@ class InputParser
 {
     public function parse($input)
     {
-        $upperCaseInput = mb_strtoupper($input);
+        $upperCaseInput = $this->uppercase($input);
         $accentFreeInput = $this->removeAccents($upperCaseInput);
-        $tokens = preg_split('/\s+/', $accentFreeInput);
+        $tokens = $this->tokenize($accentFreeInput);
         return $tokens;
     }
 
@@ -18,5 +18,15 @@ class InputParser
         $normalizedChars = 'AEIOUaeiou';
         $decodedString = utf8_decode($input);
         return strtr($decodedString, utf8_decode($originalChars), $normalizedChars);
+    }
+
+    private function uppercase($input)
+    {
+        return mb_strtoupper($input);
+    }
+
+    private function tokenize($input)
+    {
+        return preg_split('/\s+/', $input);
     }
 }
