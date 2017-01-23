@@ -1,12 +1,14 @@
 <?php
 
+namespace Enc;
+
 class Encriptador
 {
     function cryptWord($word)
     {
         if (substr_count($word, " ") > 0)
         {
-            throw new Exception("Invalid word");
+            throw new \Exception("Invalid word");
         }
 
         $wordArray = preg_split('//', $word, -1);
@@ -23,7 +25,7 @@ class Encriptador
     {
         if (substr_count($word, " ") > 0)
         {
-            throw new Exception("Invalid word");
+            throw new \Exception("Invalid word");
         }
 
         $wordArray = preg_split('//', $word, -1);
@@ -52,7 +54,7 @@ class Encriptador
     {
         if (substr_count($word, " ") > 0)
         {
-            throw new Exception("Invalid word");
+            throw new \Exception("Invalid word");
         }
 
         $wordArray = preg_split('//', $word, -1);
