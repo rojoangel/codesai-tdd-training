@@ -6,8 +6,9 @@ class InputParser
 {
     public function parse($input)
     {
+        $tokenizer = new Tokenizer();
         $parsedInput = [];
-        $tokens = $this->tokenize($input);
+        $tokens = $tokenizer->split($input);
         foreach ($tokens as $token) {
             $parsedInput[] = $this->normalize($token);
         }
@@ -25,11 +26,6 @@ class InputParser
     private function uppercase($input)
     {
         return mb_strtoupper($input);
-    }
-
-    private function tokenize($input)
-    {
-        return preg_split('/\s+/', $input);
     }
 
     private function removePluralEnding($input)
