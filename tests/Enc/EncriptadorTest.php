@@ -1,6 +1,6 @@
 <?php
 
-namespace Enc;
+namespace App\Enc;
 
 class EncriptadorTest extends \PHPUnit_Framework_TestCase
 {

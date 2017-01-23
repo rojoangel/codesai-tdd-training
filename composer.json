@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4" : {
-            "Enc\\": ["src/Enc", "tests/Enc"]
+            "App\\": ["src", "tests"]
         }
     },
     "authors": [
