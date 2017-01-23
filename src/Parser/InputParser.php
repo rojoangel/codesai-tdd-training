@@ -9,7 +9,7 @@ class InputParser
         $parsedInput = [];
         $tokens = $this->tokenize($input);
         foreach ($tokens as $token) {
-            $parsedInput[] = $this->removePluralEnding($this->removeAccents($this->uppercase($token)));
+            $parsedInput[] = $this->normalize($token);
         }
         return $parsedInput;
     }
@@ -43,5 +43,12 @@ class InputParser
     private function endsWith($haystack, $needle)
     {
         return (substr($haystack, -1) === $needle);
+    }
+
+    private function normalize($token)
+    {
+        return $this->removePluralEnding(
+            $this->removeAccents(
+                $this->uppercase($token)));
     }
 }
