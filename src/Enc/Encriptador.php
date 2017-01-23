@@ -6,29 +6,16 @@ class Encriptador
 {
     function cryptWord($word)
     {
-        if (substr_count($word, " ") > 0)
-        {
-            throw new \Exception("Invalid word");
-        }
+        $this->validateWord($word);
 
-        $wordArray = preg_split('//', $word, -1);
-        $newWord = "";
-        for ($i = 1; $i < count($wordArray) -1; $i++)
-        {
-            $charValue = ord($wordArray[$i]);
-            $newWord = $newWord . chr($charValue + 2);
-        }
-        return $newWord;
+        return $this->crypt($word);
     }
 
     function cryptWordToNumbers($word)
     {
-        if (substr_count($word, " ") > 0)
-        {
-            throw new \Exception("Invalid word");
-        }
+        $this->validateWord($word);
 
-        $wordArray = preg_split('//', $word, -1);
+        $wordArray = $this->splitToChars($word);
         $newWord = "";
         for ($i = 1; $i < count($wordArray) -1; $i++)
         {
@@ -40,25 +27,15 @@ class Encriptador
 
     function cryptSentence($word)
     {
-        $wordArray = preg_split('//', $word, -1);
-        $newWord = "";
-        for ($i = 1; $i < count($wordArray) -1; $i++)
-        {
-            $charValue = ord($wordArray[$i]);
-            $newWord = $newWord . chr($charValue + 2);
-        }
-        return $newWord;
+        return $this->crypt($word);
     }
 
     function cryptWordPartially($word, $charsToReplace)
     {
-        if (substr_count($word, " ") > 0)
-        {
-            throw new \Exception("Invalid word");
-        }
+        $this->validateWord($word);
 
-        $wordArray = preg_split('//', $word, -1);
-        $replacement = preg_split('//', $charsToReplace, -1);
+        $wordArray = $this->splitToChars($word);
+        $replacement = $this->splitToChars($charsToReplace);
         $newWord = "";
         for ($i = 1; $i < count($wordArray) -1; $i++)
         {
@@ -99,5 +76,41 @@ class Encriptador
     protected function printResult($words, $i)
     {
         echo "<" . $words[$i] . ">";
+    }
+
+    /**
+     * @param $word
+     * @throws \Exception
+     */
+    private function validateWord($word)
+    {
+        if (substr_count($word, " ") > 0) {
+            throw new \Exception("Invalid word");
+        }
+    }
+
+    /**
+     * @param $word
+     * @return array
+     */
+    private function splitToChars($word)
+    {
+        $wordArray = preg_split('//', $word, -1);
+        return $wordArray;
+    }
+
+    /**
+     * @param $word
+     * @return string
+     */
+    private function crypt($word)
+    {
+        $wordArray = $this->splitToChars($word);
+        $newWord = "";
+        for ($i = 1; $i < count($wordArray) - 1; $i++) {
+            $charValue = ord($wordArray[$i]);
+            $newWord = $newWord . chr($charValue + 2);
+        }
+        return $newWord;
     }
 }
