@@ -1,0 +1,21 @@
+{
+    "name": "rojoa/tdd-kata-php",
+    "description": "Enc Kata",
+    "require": {
+        "php": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Enc\\": ["src/Enc", "tests/Enc"]
+        }
+    },
+    "authors": [
+        {
+            "name": "rojoangel",
+            "email": "rojo.angel@gmail.com"
+        }
+    ]
+}
