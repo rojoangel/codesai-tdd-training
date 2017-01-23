@@ -6,6 +6,8 @@ class InputParser
 {
     public function parse($input)
     {
-        return strtoupper($input);
+        $upperCaseInput = strtoupper($input);
+        $tokens = preg_split('/\s+/', $upperCaseInput);
+        return $tokens;
     }
 }
