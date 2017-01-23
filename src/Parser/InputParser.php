@@ -4,11 +4,17 @@ namespace App\Parser;
 
 class InputParser
 {
+    private $tokenizer;
+
+    public function __construct()
+    {
+        $this->tokenizer = new Tokenizer();
+    }
+
     public function parse($input)
     {
-        $tokenizer = new Tokenizer();
         $parsedInput = [];
-        $tokens = $tokenizer->split($input);
+        $tokens = $this->tokenizer->split($input);
         foreach ($tokens as $token) {
             $parsedInput[] = $this->normalize($token);
         }
