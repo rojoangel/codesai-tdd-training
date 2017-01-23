@@ -8,8 +8,7 @@ class InputParser
     {
         $upperCaseInput = $this->uppercase($input);
         $accentFreeInput = $this->removeAccents($upperCaseInput);
-        $tokens = $this->tokenize($accentFreeInput);
-        return $tokens;
+        return $this->tokenize($accentFreeInput);
     }
 
     private function removeAccents($input)
